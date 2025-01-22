@@ -1,0 +1,20 @@
+extends Layouts/main-layout.pug
+
+block styles
+  link(rel="stylesheet", href="/css/main.css")
+
+block content
+
+  main
+    h1 My Products
+    p List of all my products...
+    if prods.length <= 0
+      h2 No products found.
+    else
+      .product-list
+        each product in prods
+          .product-card
+            img(src=product.imageUrl, alt=product.title)
+            h2= product.title
+            p= product.description
+            p.price $#{product.price}
