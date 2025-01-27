@@ -1,37 +1,43 @@
 <%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/Product.css">
+    </head>
 
-<link rel="stylesheet" href="/css/main.css">
-<link rel="stylesheet" href="/css/Product.css">
+    <body>
+        <%- include('../includes/navigation.ejs') %>
 
-</head>
+            <main>
+                <h1>
+                    <% if (editing) { %>Edit Product<% } else { %>Add Product<% } %>
+                </h1>
+                <form class="Main-Form" action="/admin/<% if (editing) { %>edit-product<% } else { %>add-product<% } %>"
+                    method="POST">
 
-<body>
-   <%- include('../includes/navigation.ejs') %>
+                    <!-- Hidden input for product ID (needed for editing mode) -->
+                    <% if (editing) { %>
+                        <input type="hidden" name="productId" value="<%= product.id %>">
+                        <% } %>
 
-   <main>
-    <h1>Add a New Product</h1>
-    <form  class="Main-Form" action="/admin/add-product" method="POST"> <!-- Corrected action -->
-        <label for="title">Product Title:</label>
-        <input type="text" id="title" name="title" placeholder="Enter product title" required>
-        
-        <label for="imageUrl">Image:</label>
-        <input type="file" id="imageUrl" name="imageUrl" accept="image/*" required>
-        
-        <label for="description">Description:</label>
-        <textarea id="description" name="description" placeholder="Enter product description" rows="4" required></textarea>
-        
-        <label for="price">Price ($):</label>
-        <input type="number" id="price" name="price" placeholder="Enter price" step="0.01" required>
-        
-        <button type="submit">
-            <% if (editing) { %> 
-              Update Product 
-            <% } else { %> 
-              Add Product 
-            <% } %>
-          </button>
-          
-    </form>
-</main>
+                            <label for="title">Product Title:</label>
+                            <input type="text" id="title" name="title" placeholder="Enter product title"
+                                value="<%= product ? product.title : '' %>" required>
 
-<%- include('../includes/end.ejs') %>
+                            <label for="imageUrl">Image:</label>
+                            <input type="file" id="imageUrl" name="imageUrl" accept="image/*" required>
+
+                            <label for="price">Price:</label>
+                            <input type="number" id="price" name="price" placeholder="Enter product price"
+                                value="<%= product ? product.price : '' %>" step="0.01" required>
+
+                            <label for="description">Description:</label>
+                            <textarea id="description" name="description" placeholder="Enter product description"
+                                required><%= product ? product.description : '' %></textarea>
+
+
+                            <button type="submit">
+                                <% if (editing) { %>Update Product<% } else { %>Add Product<% } %>
+                            </button>
+                </form>
+            </main>
+
+            <%- include('../includes/end.ejs') %>
+    </body>

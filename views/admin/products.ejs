@@ -18,10 +18,15 @@
                         <h2><%= product.title %></h2>
                         <p><%= product.description %></p>
                         <p class="price">$<%= product.price %></p>
-                        <a href="/admin/edit-product/<%= product._id %>" class="add">Edit</a>
+                        
+                        <!-- Edit Button -->
+                        <a href="/admin/edit-product/<%= product.id %>?edit=true" class="add">Edit</a>
+                        
+                        <!-- Delete Form -->
                         <form action="/admin/delete-product" method="POST">
-                            <input type="hidden" name="productId" value="<%= product._id %>">
+                            <input type="hidden" name="productId" value="<%= product.id %>">
                             <button class="add" type="submit">Delete</button>
+                        </form>
                     </div>
                 <% }) %>
             </div>
