@@ -8,7 +8,7 @@ body {
 }
 
 header {
-    background-color: #4CAF50;
+    background-color: #6c5ce7; /* Soft purple header */
     color: white;
     padding: 10px 0;
 }
@@ -35,7 +35,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    background-color: #45a049;
+    background-color: #5e54e0; /* Slightly darker purple on hover */
 }
 
 main {
@@ -44,12 +44,12 @@ main {
 }
 
 h1 {
-    color: #4CAF50;
+    color: #6c5ce7; /* Purple title */
     margin-bottom: 20px;
 }
 
 /* Form Styling */
-form {
+.Main-Form {
     background-color: #fff;
     padding: 20px;
     border: 1px solid #ccc;
@@ -85,7 +85,7 @@ form textarea {
 }
 
 form button {
-    background-color: #4CAF50;
+    background-color: #6c5ce7; /* Purple button */
     color: white;
     border: none;
     padding: 12px 20px;
@@ -96,7 +96,39 @@ form button {
 }
 
 form button:hover {
-    background-color: #45a049;
+    background-color: #5e54e0; /* Darker purple on hover */
+}
+
+/* Common styles for both links and buttons */
+.add {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: #6c5ce7; /* Primary purple background */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1.1em;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 10px;
+    box-sizing: border-box;
+}
+
+/* Hover effect for both links and buttons */
+.add:hover {
+    background-color: #5e54e0; /* Darker purple on hover */
+    transform: scale(1.02);
+}
+
+/* Focus state for accessibility */
+.add:focus {
+    outline: 2px solid #fff; /* White focus ring */
+    outline-offset: 2px;
 }
 
 /* Responsive Design */

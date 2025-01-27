@@ -1,6 +1,30 @@
 <%- include('../includes/head.ejs') %>
-    </head>
+    <link rel="stylesheet" href="/css/product.css">
+</head>
 
-    <body>
-        <%- include('../includes/navigation.ejs') %>
-        <%- include('../includes/end.ejs') %>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+
+    <main>
+        <h1>My Products</h1>
+        <p>List of all my products...</p>
+        <% if (prods.length <= 0) { %>
+            <h2>No products found.</h2>
+        <% } else { %>
+            <div class="product-list">
+                <% prods.forEach(product => { %>
+                    <div class="product-card">
+                        <img src="<%= product.imageUrl %>" alt="<%= product.title %>">
+                        <h2><%= product.title %></h2>
+                        <p><%= product.description %></p>
+                        <p class="price">$<%= product.price %></p>
+                        <a href="/admin/edit-product/<%= product._id %>" class="add">Edit</a>
+                        <form action="/admin/delete-product" method="POST">
+                            <input type="hidden" name="productId" value="<%= product._id %>">
+                            <button class="add" type="submit">Delete</button>
+                    </div>
+                <% }) %>
+            </div>
+        <% } %>
+    </main>
+<%- include('../includes/end.ejs') %>
