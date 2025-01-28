@@ -1,15 +1,38 @@
 <%- include('../includes/head.ejs') %>
-    
-<link rel="stylesheet" href="/css/main.css">
 
-</head>
+    <link rel="stylesheet" href="/css/main.css">
 
-<body>
-   <%- include('../includes/navigation.ejs') %>
+    </head>
 
-   <h1>Cart</h1>
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main>
+                <% if (products.length> 0) { %>
+
+                    <ul>
+
+                        <% products.forEach(p=> { %>
+                            <li>
+                                <p>
+                                    qty = <%= p.qty %> <%= p.productData.title %> -
+                                        <%= p.productData.price %> USD
+                                </p>
+                                <form action="/cart-delete-item" method="POST">
+                                    <input type="hidden" name="productId" value="<%= p.productData.id %>">
+                                    <button type="submit">Remove</button>   
+                                </form>
+
+                               
+                            </li>
+                            <% }) %>
+                    </ul>
+                    <% } else { %>
+                        <p>No products in cart</p>
+                        <% } %>
+            </main>
 
 
-    <%- include('../includes/end.ejs') %>
-</body>
-</html>
+            <%- include('../includes/end.ejs') %>
+    </body>
+
+    </html>
