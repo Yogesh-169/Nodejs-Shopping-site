@@ -14,7 +14,7 @@
 
                     <!-- Hidden input for product ID (needed for editing mode) -->
                     <% if (editing) { %>
-                        <input type="hidden" name="productId" value="<%= product.id %>">
+                        <input type="hidden" name="productId" value="<%= product._id %>">
                         <% } %>
 
                             <label for="title">Product Title:</label>

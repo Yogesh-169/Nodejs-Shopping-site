@@ -20,11 +20,11 @@
                         <p class="price">$<%= product.price %></p>
                         
                         <!-- Edit Button -->
-                        <a href="/admin/edit-product/<%= product.id %>?edit=true" class="add">Edit</a>
+                        <a href="/admin/edit-product/<%= product._id %>?edit=true" class="add">Edit</a>
                         
                         <!-- Delete Form -->
                         <form action="/admin/delete-product" method="POST">
-                            <input type="hidden" name="productId" value="<%= product.id %>">
+                            <input type="hidden" name="productId" value="<%= product._id %>">
                             <button class="add" type="submit">Delete</button>
                         </form>
                     </div>

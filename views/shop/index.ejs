@@ -19,7 +19,7 @@
                         <p><%= product.description %></p>
                         <p class="price">$<%= product.price %></p>
                         <div>
-                            <a href="/products/<%= product.id %>" class="add">View Details</a>
+                            <a href="/products/<%= product._id %>" class="add">View Details</a>
                             <%- include('../includes/add-to-cart.ejs', {product:product}) %>
 
                              

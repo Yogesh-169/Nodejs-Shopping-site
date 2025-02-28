@@ -1,64 +1,74 @@
 <%- include('../includes/head.ejs') %>
-
-<link rel="stylesheet" href="/css/main.css">
+<!-- <link rel="stylesheet" href="/css/main.css"> -->
 <link rel="stylesheet" href="/css/cart.css">
 
 </head>
+    <body>
+        <%- include('../includes/navigation.ejs') %>
 
-<body>
-    <%- include('../includes/navigation.ejs') %>
+            <main class="cart-container">
+                <h1 class="cart-title">Your Shopping Cart</h1>
 
-    <main class="cart-container">
-        <h1 class="cart-title">Your Shopping Cart</h1>
+                <% if (products.length> 0) { %>
+                    <div class="cart-content">
+                        <table class="cart-table">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Price (per unit)</th>
+                                    <th>Total Price</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% products.forEach(p=> { %>
+                                    <tr class="cart-item">
+                                        <td class="product-title">
+                                            <%= p.productId.title %>
+                                        </td>
+                                        <td class="product-qty">
+                                            <%= p.quantity %>
+                                        </td>
+                                        <td class="product-price">
+                                            <%= Number(p.productId.price).toFixed(2) %> USD
+                                        </td>
+                                        
+                                        <td class="product-total">
+                                            <%= (p.quantity * Number(p.productId.price)).toFixed(2) %> USD
+                                        </td>
+                                        
+                                        <td>
+                                            <form action="/cart-delete-item" method="POST">
+                                                <input type="hidden" name="productId" value="<%= p.productId._id %>">
+                                                <button type="submit" class="btn-remove">Remove</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <% }); %>
+                            </tbody>
+                        </table>
 
-        <% if (products.length > 0) { %>
-            <div class="cart-content">
-                <table class="cart-table">
-                    <thead>
-                        <tr>
-                            <th>Product</th>
-                            <th>Quantity</th>
-                            <th>Price (per unit)</th>
-                            <th>Total Price</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% products.forEach(p => { %>
-                            <tr class="cart-item">
-                                <td class="product-title"><%= p.title %></td>
-                                <td class="product-qty"><%= p.cartItem.quantity %></td>
-                                <td class="product-price"><%= p.price.toFixed(2) %> USD</td>
-                                <td class="product-total"><%= (p.cartItem.quantity * p.price).toFixed(2) %> USD</td>
-                                <td>
-                                    <form action="/cart-delete-item" method="POST">
-                                        <input type="hidden" name="productId" value="<%= p.id %>">
-                                        <button type="submit" class="btn-remove">Remove</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        <% }); %>
-                    </tbody>
-                </table>
+                        <div class="cart-summary">
+                            <h2>Cart Summary</h2>
+                            <p><strong>Total Items:</strong>
+                                <%= products.reduce((sum, p)=> sum + p.quantity, 0) %>
+                            </p>
+                            <p><strong>Total Price:</strong>
+                                <%= products.reduce((sum, p)=> sum + (p.quantity * p.productId.price), 0).toFixed(2) %> USD
+                            </p>
+                            <form action="/create-order" method="POST">
+                                <button type="submit" class="btn-order">Order Now</button>
+                            </form>
 
-                <div class="cart-summary">
-                    <h2>Cart Summary</h2>
-                    <p><strong>Total Items:</strong> <%= products.reduce((sum, p) => sum + p.cartItem.quantity, 0) %></p>
-                    <p><strong>Total Price:</strong> 
-                        <%= products.reduce((sum, p) => sum + (p.cartItem.quantity * p.price), 0).toFixed(2) %> USD
-                    </p>
-                    <form action="/create-order" method="POST">
-                        <button type="submit" class="btn-order">Order Now</button>
-                    </form>
-                    
-                </div>
-            </div>
-        <% } else { %>
-            <p class="empty-cart">Your cart is empty! Start adding some products.</p>
-        <% } %>
-    </main>
+                        </div>
+                    </div>
+                    <% } else { %>
+                        <p class="empty-cart">Your cart is empty! Start adding some products.</p>
+                        <% } %>
+            </main>
 
-    <%- include('../includes/end.ejs') %>
-</body>
+            <%- include('../includes/end.ejs') %>
+    </body>
 
-</html>
+    </html>

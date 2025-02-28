@@ -1,24 +1,31 @@
-// const mysql=require('mysql2');
-// const db=mysql.createPool({
-//     host:'localhost',
-//     user:'root',
-//     password:'admin',
-//     database:'ecommerce'
-// });
+const mongodb = require('mongodb');
+const MongoClient = mongodb.MongoClient;
+require('dotenv').config();
 
-// module.exports=db.promise();
+let _db;
 
+const mongoConnect = (callback) => {
+    MongoClient.connect(process.env.MONGO_URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
+    .then(client => {
+        console.log('Connected to MongoDB');
+        _db = client.db();  // Select the default database
+        callback();
+    })
+    .catch(err => {
+        console.error('MongoDB Connection Failed:', err);
+        callback(err);  // Pass error to callback
+    });
+};
 
-const Sequelize = require('sequelize');
-
-const sequelize = new Sequelize(
-    'ecommerce',
-    'root',
-    'admin',
-    {
-        dialect: 'mysql',
-        host: 'localhost'
+const getDb = () => {
+    if (_db) {
+        return _db;
     }
-);
+    throw new Error('No database found');
+};
 
-module.exports = sequelize; 
+exports.mongoConnect = mongoConnect;
+exports.getDb = getDb;

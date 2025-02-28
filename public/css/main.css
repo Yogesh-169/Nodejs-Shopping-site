@@ -10,7 +10,7 @@ body {
 header {
     background-color: #6c5ce7; /* Soft purple header */
     color: white;
-    padding: 10px 0;
+    /* padding: 10px 0; */
 }
 
 /* Navigation Styles */
@@ -186,10 +186,13 @@ main p {
 
 .product-card img {
     width: 100%;
-    height: auto;
-    border-radius: 10px;
+    height: 250px; /* Fixed height */
+    object-fit: contain; /* Ensures the full image is visible */
+    border-radius: 20px;
     transition: transform 0.3s ease;
+    /* background-color: #f8f9fa; Optional: Adds a background if the image doesn't fully cover */
 }
+
 
 .product-card:hover img {
     transform: scale(1.05);

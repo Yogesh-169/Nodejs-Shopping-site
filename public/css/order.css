@@ -1,0 +1,121 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.page-title {
+    text-align: center;
+    font-size: 2em;
+    color: #6c5ce7;
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+.orders-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.order-card {
+    background: white;
+    width: 350px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.order-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.order-header h2 {
+    font-size: 1.2em;
+    color: #6c5ce7;
+    margin-bottom: 5px;
+}
+
+.order-header p {
+    font-size: 0.9em;
+    color: #777;
+}
+
+h3 {
+    font-size: 1.1em;
+    color: #444;
+    margin-top: 15px;
+}
+
+.product-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.product-item {
+    display: flex;
+    justify-content: space-between;
+    background: #f8f9fa;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 6px;
+    font-size: 0.95em;
+}
+
+.product-title {
+    font-weight: bold;
+}
+
+.product-quantity {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.product-price {
+    font-weight: bold;
+    color: #28a745;
+}
+
+.total-price {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 15px;
+    text-align: center;
+    padding: 10px;
+    background: #f1f3f4;
+    border-radius: 6px;
+    color: #6c5ce7;
+}
+
+.no-orders {
+    text-align: center;
+    font-size: 1.2em;
+    color: #6c5ce7;
+    margin-top: 20px;
+}
+/* Navigation styles */
+nav {
+    background-color: #5e54e0;;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-size: 16px;
+}
+
+nav a:hover {
+    background-color: #555;
+}
